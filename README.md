@@ -22,6 +22,20 @@ compile 'com.github.zawadz88:material-activity-chooser:0.1.0'
   - adding custom actions when an activity was clicked
   - going to the chosen activity settings on long-click
   
+## Screenshots
+  - Showcase<br/>
+<img src ="./screenshots/showcase.gif" width="360" height="640"/>
+  - Sharing with MaterialActivityChooser<br/>
+<img src ="./screenshots/share.png" width="360" height="640"/>
+  - Sharing with the system IntentChooser on Nougat for comparison<br/>
+<img src ="./screenshots/stock_share_on_nougat.png" width="360" height="640"/>
+  - Sharing with MaterialActivityChooser with custom style<br/>
+<img src ="./screenshots/styled_share.png" width="360" height="640"/>
+  - Sharing with MaterialActivityChooser when no activities found<br/>
+<img src ="./screenshots/empty_view.png" width="360" height="640"/>
+  - Sharing with MaterialActivityChooser when no activities found with a custom view<br/>
+<img src ="./screenshots/empty_view_custom.png" width="360" height="640"/>
+  
 ## Getting started
 
 ### Add Activity Chooser activity to AndroidManifest.xml
@@ -136,7 +150,7 @@ You can inflate an entirely custom empty view as well, e.g.
 
 ```
 
-## Styling the dialog to you own needs
+## Styling the dialog to your own needs
 You can override the default styling of the Activity Chooser to your own needs.
 The easiest way is to override the 
 
