@@ -6,9 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-/**
- * @author Piotr Zawadzki (Piotr.Zawadzki@stepstone.com)
- */
 public class FileUtil {
 
     public static File copyFileFromAssetsToCacheDirectory(Context context, String fileName) {

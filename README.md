@@ -76,7 +76,7 @@ or
         .show();
 ```
 
-## Using alternative intents for selected packages
+## Using alternative intents for selected apps
 It is possible to use alternative intents for selected applications instead of the main intent 
 e.g. assuming you wanted to share a message, but you wanted to have a slightly different message for common Mail apps.
 This can be done by e.g.
@@ -111,7 +111,7 @@ or
         .show();
 ```
 
-## Setting a button on empty view
+## Showing a button on empty view
 You can show a button on the empty view which will trigger a PendingIntent once clicked. To do so you need to provide the PendingIntent with/without a button title, e.g.
 
 ```java
@@ -186,6 +186,10 @@ and also declared when building the activity chooser:
         .withActivity(TrackingActivityChooserActivity.class)
         .show();
 ```
+
+## Notes
+This library comes with a number of dependencies.<br/>
+It relies on the BottomSheetBehavior from Android Support Design Library and it uses a RecyclerView for displaying a list of items.
 
 ## License
 Copyright 2016 Piotr Zawadzki
