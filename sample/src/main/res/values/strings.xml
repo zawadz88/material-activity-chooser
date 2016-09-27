@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Material Activity Chooser Sample</string>
+
+    <string name="share_text">Share text</string>
+    <string name="share_text_with_title">Share text with title</string>
+    <string name="share_text_with_title_from_resource">Share text with title from resource</string>
+    <string name="share_text_with_secondary_intents">Share text with secondary intents</string>
+    <string name="share_text_styled">Share text with custom styled activity</string>
+    <string name="show_empty_default">Show default empty view</string>
+    <string name="show_empty_custom_text_from_resource">Show empty view with custom text from resource</string>
+    <string name="show_empty_custom_text">Show empty view with custom text</string>
+    <string name="show_empty_custom_action">Show empty view with custom action</string>
+    <string name="show_empty_custom_action_text">Show empty view with custom action text</string>
+    <string name="show_empty_custom_action_text_from_resource">Show empty view with custom action text from resource</string>
+    <string name="show_empty_custom_view">Show empty view with custom view</string>
+    <string name="track_clicked_items">Track clicked items</string>
+    <string name="preview_pdf">Preview PDF</string>
+
+    <string name="custom_share_title">Custom title</string>
+    <string name="custom_empty_view_title">Custom empty title\n\nLorem ipsum\nLorem ipsum\nLorem ipsum\nLorem ipsum\nLorem ipsum\nLorem ipsum</string>
+    <string name="custom_empty_view_button_title">Click me, please</string>
+</resources>

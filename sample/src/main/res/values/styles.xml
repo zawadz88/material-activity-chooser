@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomShareTheme" parent="MSPTheme">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="msp_bottomSheetStyle">@style/CustomBottomSheet</item>
+        <item name="msp_bottomSheetTitleStyle">@style/CustomBottomSheetTitle</item>
+        <item name="msp_activityItemLabelStyle">@style/CustomActivityItemLabel</item>
+        <item name="msp_activityItemSpanCount">2</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="MSPBottomSheet">
+        <item name="android:background">@android:color/black</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark</item>
+    </style>
+
+    <style name="CustomBottomSheetTitle" parent="MSPBottomSheetTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@android:color/black</item>
+    </style>
+
+    <style name="CustomActivityItemLabel" parent="MSPActivityItemLabel">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

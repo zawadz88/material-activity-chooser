@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="msp_bottomSheetStyle" format="reference" />
+    <attr name="msp_bottomSheetTitleStyle" format="reference" />
+    <attr name="msp_emptyViewStyle" format="reference" />
+    <attr name="msp_emptyViewTitleStyle" format="reference" />
+    <attr name="msp_emptyViewButtonStyle" format="reference" />
+    <attr name="msp_activityItemStyle" format="reference" />
+    <attr name="msp_activityItemIconStyle" format="reference" />
+    <attr name="msp_activityItemLabelStyle" format="reference" />
+
+    <attr name="msp_activityItemSpanCount" format="reference|integer" />
+
+    <declare-styleable name="MSPTitleView">
+        <attr name="state_over_content" format="boolean" />
+    </declare-styleable>
+
+</resources>

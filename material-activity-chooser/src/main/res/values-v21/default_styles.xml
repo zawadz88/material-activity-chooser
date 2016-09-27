@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="MSPBottomSheetTitle" parent="Base.MSPBottomSheetTitle">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:stateListAnimator">@animator/msp_title_elevation_selector</item>
+    </style>
+
+</resources>

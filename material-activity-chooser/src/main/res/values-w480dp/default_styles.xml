@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="MSPBottomSheet" parent="Base.MSPBottomSheet">
+        <item name="android:layout_width">@dimen/msp_bottom_sheet_max_width</item>
+    </style>
+
+</resources>
