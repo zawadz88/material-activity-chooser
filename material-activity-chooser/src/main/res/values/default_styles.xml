@@ -1,78 +1,78 @@
 <resources>
 
-    <style name="MSPNoWindowAnimation">
+    <style name="MACNoWindowAnimation">
         <item name="android:windowEnterAnimation">@null</item>
     </style>
 
-    <style name="Base.MSPBottomSheet" parent="">
+    <style name="Base.MACBottomSheet" parent="">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/white</item>
-        <item name="behavior_peekHeight">@dimen/msp_peek_height</item>
+        <item name="behavior_peekHeight">@dimen/mac_peek_height</item>
     </style>
 
-    <style name="MSPBottomSheet" parent="Base.MSPBottomSheet">
+    <style name="MACBottomSheet" parent="Base.MACBottomSheet">
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="Base.MSPBottomSheetTitle" parent="">
+    <style name="Base.MACBottomSheetTitle" parent="">
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
-        <item name="android:paddingLeft">@dimen/msp_bottom_sheet_title_lateral_padding</item>
-        <item name="android:paddingRight">@dimen/msp_bottom_sheet_title_lateral_padding</item>
-        <item name="android:paddingTop">@dimen/msp_bottom_sheet_title_vertical_padding</item>
-        <item name="android:paddingBottom">@dimen/msp_bottom_sheet_title_vertical_padding</item>
-        <item name="android:textColor">@color/msp_black_54</item>
+        <item name="android:paddingLeft">@dimen/mac_bottom_sheet_title_lateral_padding</item>
+        <item name="android:paddingRight">@dimen/mac_bottom_sheet_title_lateral_padding</item>
+        <item name="android:paddingTop">@dimen/mac_bottom_sheet_title_vertical_padding</item>
+        <item name="android:paddingBottom">@dimen/mac_bottom_sheet_title_vertical_padding</item>
+        <item name="android:textColor">@color/mac_black_54</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textSize">@dimen/msp_title_size</item>
+        <item name="android:textSize">@dimen/mac_title_size</item>
     </style>
 
-    <style name="MSPBottomSheetTitle" parent="Base.MSPBottomSheetTitle">
-        <item name="android:background">@drawable/msp_title_background_selector</item>
+    <style name="MACBottomSheetTitle" parent="Base.MACBottomSheetTitle">
+        <item name="android:background">@drawable/mac_title_background_selector</item>
     </style>
 
-    <style name="MSPActivityItem">
-        <item name="android:paddingLeft">@dimen/msp_activity_item_lateral_padding</item>
-        <item name="android:paddingRight">@dimen/msp_activity_item_lateral_padding</item>
-        <item name="android:paddingTop">@dimen/msp_activity_item_vertical_padding</item>
-        <item name="android:paddingBottom">@dimen/msp_activity_item_vertical_padding</item>
+    <style name="MACActivityItem">
+        <item name="android:paddingLeft">@dimen/mac_activity_item_lateral_padding</item>
+        <item name="android:paddingRight">@dimen/mac_activity_item_lateral_padding</item>
+        <item name="android:paddingTop">@dimen/mac_activity_item_vertical_padding</item>
+        <item name="android:paddingBottom">@dimen/mac_activity_item_vertical_padding</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>
 
-    <style name="MSPActivityItemIcon">
-        <item name="android:layout_width">@dimen/msp_activity_icon_size</item>
-        <item name="android:layout_height">@dimen/msp_activity_icon_size</item>
-        <item name="android:layout_marginBottom">@dimen/msp_activity_icon_margin_bottom</item>
+    <style name="MACActivityItemIcon">
+        <item name="android:layout_width">@dimen/mac_activity_icon_size</item>
+        <item name="android:layout_height">@dimen/mac_activity_icon_size</item>
+        <item name="android:layout_marginBottom">@dimen/mac_activity_icon_margin_bottom</item>
     </style>
 
-    <style name="MSPActivityItemLabel">
+    <style name="MACActivityItemLabel">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">2</item>
-        <item name="android:textSize">@dimen/msp_activity_title_size</item>
-        <item name="android:textColor">@color/msp_black_87</item>
+        <item name="android:textSize">@dimen/mac_activity_title_size</item>
+        <item name="android:textColor">@color/mac_black_87</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
     </style>
 
-    <style name="MSPEmptyView">
+    <style name="MACEmptyView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">@dimen/msp_empty_view_min_height</item>
+        <item name="android:minHeight">@dimen/mac_empty_view_min_height</item>
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:padding">@dimen/msp_empty_view_padding</item>
+        <item name="android:padding">@dimen/mac_empty_view_padding</item>
     </style>
 
-    <style name="MSPEmptyViewTitle">
-        <item name="android:textColor">@color/msp_black_87</item>
+    <style name="MACEmptyViewTitle">
+        <item name="android:textColor">@color/mac_black_87</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textSize">@dimen/msp_empty_view_title_size</item>
+        <item name="android:textSize">@dimen/mac_empty_view_title_size</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:paddingLeft">@dimen/msp_empty_view_title_lateral_padding</item>
-        <item name="android:paddingRight">@dimen/msp_empty_view_title_lateral_padding</item>
+        <item name="android:paddingLeft">@dimen/mac_empty_view_title_lateral_padding</item>
+        <item name="android:paddingRight">@dimen/mac_empty_view_title_lateral_padding</item>
     </style>
 
-    <style name="MSPEmptyViewButton" parent="Widget.AppCompat.Button">
-        <item name="android:layout_marginTop">@dimen/msp_empty_view_button_margin_top</item>
+    <style name="MACEmptyViewButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_marginTop">@dimen/mac_empty_view_button_margin_top</item>
     </style>
 
 </resources>

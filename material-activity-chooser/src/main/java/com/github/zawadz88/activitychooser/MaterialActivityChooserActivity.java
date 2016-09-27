@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author Piotr Zawadzki
  */
-public class MaterialShareActivity extends AppCompatActivity implements ActivityAdapter.OnActivityInteractionListener {
+public class MaterialActivityChooserActivity extends AppCompatActivity implements ActivityAdapter.OnActivityInteractionListener {
 
     public static final String INTENT_KEY = "intent";
     public static final String TITLE_KEY = "title";
@@ -45,7 +45,7 @@ public class MaterialShareActivity extends AppCompatActivity implements Activity
     public static final String EMPTY_VIEW_LAYOUT_KEY = "emptyViewLayout";
     public static final String SECONDARY_INTENTS_KEY = "secondaryIntentsKey";
 
-    private static final String TAG = "MaterialShareActivity";
+    private static final String TAG = "MatActChooserActivity";
 
     private static final int CONTENT_FADE_IN_DURATION = 300;
     private static final long BOTTOM_SHEET_ENTER_ANIMATION_OFFSET = 200L;
@@ -81,7 +81,7 @@ public class MaterialShareActivity extends AppCompatActivity implements Activity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_material_share);
+        setContentView(R.layout.activity_material_activity_chooser);
 
         mIntent = getIntent().getParcelableExtra(INTENT_KEY);
         //noinspection unchecked
@@ -108,21 +108,21 @@ public class MaterialShareActivity extends AppCompatActivity implements Activity
     }
 
     private void findViews() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.msp_recycler_view);
-        mBottomSheet = findViewById(R.id.msp_bottom_sheet);
-        mContentView = findViewById(R.id.msp_content_view);
-        mTitleView = (BottomSheetTitleTextView) findViewById(R.id.msp_title);
-        mEmptyViewStub = (ViewStub) findViewById(R.id.msp_empty_view_custom_view_stub);
-        mEmptyView = findViewById(R.id.msp_empty_view);
-        mEmptyViewTitleTextView = (TextView) findViewById(R.id.msp_empty_view_title);
-        mEmptyViewButton = (Button) findViewById(R.id.msp_empty_view_button);
+        mRecyclerView = (RecyclerView) findViewById(R.id.mac_recycler_view);
+        mBottomSheet = findViewById(R.id.mac_bottom_sheet);
+        mContentView = findViewById(R.id.mac_content_view);
+        mTitleView = (BottomSheetTitleTextView) findViewById(R.id.mac_title);
+        mEmptyViewStub = (ViewStub) findViewById(R.id.mac_empty_view_custom_view_stub);
+        mEmptyView = findViewById(R.id.mac_empty_view);
+        mEmptyViewTitleTextView = (TextView) findViewById(R.id.mac_empty_view_title);
+        mEmptyViewButton = (Button) findViewById(R.id.mac_empty_view_button);
     }
 
     private void initTitle() {
         if (getIntent().hasExtra(TITLE_KEY)) {
             mTitleView.setText(getIntent().getStringExtra(TITLE_KEY));
         } else {
-            mTitleView.setText(getIntent().getIntExtra(TITLE_RESOURCE_ID_KEY, R.string.msp_default_title));
+            mTitleView.setText(getIntent().getIntExtra(TITLE_RESOURCE_ID_KEY, R.string.mac_default_title));
         }
     }
 
@@ -138,7 +138,7 @@ public class MaterialShareActivity extends AppCompatActivity implements Activity
         if (getIntent().hasExtra(EMPTY_VIEW_TITLE_KEY)) {
             mEmptyViewTitleTextView.setText(getIntent().getStringExtra(EMPTY_VIEW_TITLE_KEY));
         } else {
-            mEmptyViewTitleTextView.setText(getIntent().getIntExtra(EMPTY_VIEW_TITLE_RESOURCE_ID_KEY, R.string.msp_default_no_activities_found_message));
+            mEmptyViewTitleTextView.setText(getIntent().getIntExtra(EMPTY_VIEW_TITLE_RESOURCE_ID_KEY, R.string.mac_default_no_activities_found_message));
         }
 
         if (getIntent().hasExtra(EMPTY_VIEW_ACTION_KEY)) {
@@ -147,7 +147,7 @@ public class MaterialShareActivity extends AppCompatActivity implements Activity
             if (getIntent().hasExtra(EMPTY_VIEW_BUTTON_TITLE_KEY)) {
                 mEmptyViewButton.setText(getIntent().getStringExtra(EMPTY_VIEW_BUTTON_TITLE_KEY));
             } else {
-                mEmptyViewButton.setText(getIntent().getIntExtra(EMPTY_VIEW_BUTTON_TITLE_RESOURCE_ID_KEY, R.string.msp_default_empty_view_button_message));
+                mEmptyViewButton.setText(getIntent().getIntExtra(EMPTY_VIEW_BUTTON_TITLE_RESOURCE_ID_KEY, R.string.mac_default_empty_view_button_message));
             }
             mEmptyViewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -176,7 +176,7 @@ public class MaterialShareActivity extends AppCompatActivity implements Activity
     }
 
     private void initBottomSheet() {
-        int spanCount = AttributeHelper.getIntegerFromAttribute(this, R.attr.msp_activityItemSpanCount, getResources().getInteger(R.integer.msp_span_count));
+        int spanCount = AttributeHelper.getIntegerFromAttribute(this, R.attr.mac_activityItemSpanCount, getResources().getInteger(R.integer.mac_span_count));
 
         mLayoutManager = new GridLayoutManager(this, spanCount);
         mRecyclerView.setLayoutManager(mLayoutManager);

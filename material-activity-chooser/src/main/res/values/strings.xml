@@ -1,5 +1,5 @@
 <resources>
-    <string name="msp_default_title">Share via</string>
-    <string name="msp_default_no_activities_found_message">Action couldn\'t be completed.</string>
-    <string name="msp_default_empty_view_button_message">Resolve</string>
+    <string name="mac_default_title">Share via</string>
+    <string name="mac_default_no_activities_found_message">Action couldn\'t be completed.</string>
+    <string name="mac_default_empty_view_button_message">Resolve</string>
 </resources>

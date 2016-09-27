@@ -15,6 +15,12 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <Button
+            android:id="@+id/activity_sample_stock_share_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stock_share_text" />
+
+        <Button
             android:id="@+id/activity_sample_share_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

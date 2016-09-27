@@ -18,16 +18,16 @@
         </activity>
 
         <activity
-            android:name="com.github.zawadz88.activitychooser.MaterialShareActivity"
-            android:theme="@style/MSPTheme" />
+            android:name="com.github.zawadz88.activitychooser.MaterialActivityChooserActivity"
+            android:theme="@style/MACTheme" />
 
         <activity
-            android:name=".StyledMaterialShareActivity"
+            android:name=".StyledActivityChooserActivity"
             android:theme="@style/CustomShareTheme" />
 
         <activity
-            android:name=".TrackingMaterialShareActivity"
-            android:theme="@style/MSPTheme" />
+            android:name=".TrackingActivityChooserActivity"
+            android:theme="@style/MACTheme" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

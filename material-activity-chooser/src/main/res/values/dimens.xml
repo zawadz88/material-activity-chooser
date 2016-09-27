@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="msp_title_size">14sp</dimen>
-    <dimen name="msp_activity_title_size">12sp</dimen>
-    <dimen name="msp_empty_view_title_size">16sp</dimen>
+    <dimen name="mac_title_size">14sp</dimen>
+    <dimen name="mac_activity_title_size">12sp</dimen>
+    <dimen name="mac_empty_view_title_size">16sp</dimen>
 
-    <dimen name="msp_peek_height">200dp</dimen>
-    <dimen name="msp_empty_view_padding">16dp</dimen>
-    <dimen name="msp_empty_view_min_height">120dp</dimen>
-    <dimen name="msp_empty_view_button_margin_top">8dp</dimen>
-    <dimen name="msp_empty_view_title_lateral_padding">16dp</dimen>
-    <dimen name="msp_bottom_sheet_title_lateral_padding">16dp</dimen>
-    <dimen name="msp_bottom_sheet_title_vertical_padding">12dp</dimen>
-    <dimen name="msp_bottom_sheet_max_width">480dp</dimen>
-    <dimen name="msp_activity_icon_size">48dp</dimen>
-    <dimen name="msp_separator_height">1dp</dimen>
-    <dimen name="msp_activity_icon_margin_bottom">10dp</dimen>
-    <dimen name="msp_recyclerview_padding_bottom">16dp</dimen>
-    <dimen name="msp_activity_item_vertical_padding">16dp</dimen>
-    <dimen name="msp_activity_item_lateral_padding">4dp</dimen>
+    <dimen name="mac_peek_height">200dp</dimen>
+    <dimen name="mac_empty_view_padding">16dp</dimen>
+    <dimen name="mac_empty_view_min_height">120dp</dimen>
+    <dimen name="mac_empty_view_button_margin_top">8dp</dimen>
+    <dimen name="mac_empty_view_title_lateral_padding">16dp</dimen>
+    <dimen name="mac_bottom_sheet_title_lateral_padding">16dp</dimen>
+    <dimen name="mac_bottom_sheet_title_vertical_padding">12dp</dimen>
+    <dimen name="mac_bottom_sheet_max_width">480dp</dimen>
+    <dimen name="mac_activity_icon_size">48dp</dimen>
+    <dimen name="mac_separator_height">1dp</dimen>
+    <dimen name="mac_activity_icon_margin_bottom">10dp</dimen>
+    <dimen name="mac_recycler_view_padding_bottom">16dp</dimen>
+    <dimen name="mac_activity_item_vertical_padding">16dp</dimen>
+    <dimen name="mac_activity_item_lateral_padding">4dp</dimen>
 
-    <dimen name="msp_title_view_elevation_when_scrolling">2dp</dimen>
+    <dimen name="mac_title_view_elevation_when_scrolling">2dp</dimen>
 </resources>

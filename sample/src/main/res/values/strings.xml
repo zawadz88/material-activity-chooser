@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Material Activity Chooser Sample</string>
 
+    <string name="stock_share_text">Share text with the stock Activity Chooser</string>
     <string name="share_text">Share text</string>
     <string name="share_text_with_title">Share text with title</string>
     <string name="share_text_with_title_from_resource">Share text with title from resource</string>

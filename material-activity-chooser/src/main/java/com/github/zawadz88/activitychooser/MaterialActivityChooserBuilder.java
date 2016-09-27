@@ -12,15 +12,15 @@ import android.util.Log;
 import java.util.HashMap;
 
 /**
- * A builder class responsible for creating a {@link MaterialShareActivity}.
+ * A builder class responsible for creating a {@link MaterialActivityChooserActivity}.
  * You must call {@link #show()} at the end to actually start the activity.
  * {@link #withIntent(Intent)} is required to launch the activity, the rest is optional.
  *
  * @author Piotr Zawadzki
  */
-public final class MaterialShareBuilder {
+public final class MaterialActivityChooserBuilder {
 
-    private static final String TAG = "MaterialShareBuilder";
+    private static final String TAG = "MatActChooserBuilder";
 
     @NonNull
     private final Context mContext;
@@ -41,7 +41,7 @@ public final class MaterialShareBuilder {
     private HashMap<String, Intent> secondaryIntentsForPackages = new HashMap<>();
 
     @NonNull
-    private Class<? extends MaterialShareActivity> mActivityClass = MaterialShareActivity.class;
+    private Class<? extends MaterialActivityChooserActivity> mActivityClass = MaterialActivityChooserActivity.class;
 
     private int mEmptyViewButtonTextResourceId;
 
@@ -52,16 +52,16 @@ public final class MaterialShareBuilder {
     @LayoutRes
     private int mCustomEmptyViewLayoutResourceId;
 
-    public MaterialShareBuilder(@NonNull Context context) {
+    public MaterialActivityChooserBuilder(@NonNull Context context) {
         this.mContext = context;
     }
 
     /**
      * Use a custom share activity.
-     * @param activityClass activity extending {@link MaterialShareActivity}
+     * @param activityClass activity extending {@link MaterialActivityChooserActivity}
      * @return self
      */
-    public MaterialShareBuilder withActivity(@NonNull Class<? extends MaterialShareActivity> activityClass) {
+    public MaterialActivityChooserBuilder withActivity(@NonNull Class<? extends MaterialActivityChooserActivity> activityClass) {
         this.mActivityClass = activityClass;
         return this;
     }
@@ -71,7 +71,7 @@ public final class MaterialShareBuilder {
      * @param intent intent to use
      * @return self
      */
-    public MaterialShareBuilder withIntent(@NonNull Intent intent) {
+    public MaterialActivityChooserBuilder withIntent(@NonNull Intent intent) {
         mIntent = intent;
         return this;
     }
@@ -81,7 +81,7 @@ public final class MaterialShareBuilder {
      * @param title bottom sheet title
      * @return self
      */
-    public MaterialShareBuilder withTitle(@NonNull String title) {
+    public MaterialActivityChooserBuilder withTitle(@NonNull String title) {
         mTitle = title;
         return this;
     }
@@ -91,7 +91,7 @@ public final class MaterialShareBuilder {
      * @param titleResourceId bottom sheet title resource ID
      * @return self
      */
-    public MaterialShareBuilder withTitle(@StringRes int titleResourceId) {
+    public MaterialActivityChooserBuilder withTitle(@StringRes int titleResourceId) {
         mTitleResourceId = titleResourceId;
         return this;
     }
@@ -101,7 +101,7 @@ public final class MaterialShareBuilder {
      * @param customViewLayoutResourceId layout resource ID of the custom view
      * @return self
      */
-    public MaterialShareBuilder withEmptyViewCustomView(@LayoutRes int customViewLayoutResourceId) {
+    public MaterialActivityChooserBuilder withEmptyViewCustomView(@LayoutRes int customViewLayoutResourceId) {
         mCustomEmptyViewLayoutResourceId = customViewLayoutResourceId;
         return this;
     }
@@ -111,7 +111,7 @@ public final class MaterialShareBuilder {
      * @param emptyViewTitle title of the empty view
      * @return self
      */
-    public MaterialShareBuilder withEmptyViewTitle(@NonNull String emptyViewTitle) {
+    public MaterialActivityChooserBuilder withEmptyViewTitle(@NonNull String emptyViewTitle) {
         mEmptyViewTitle = emptyViewTitle;
         return this;
     }
@@ -121,7 +121,7 @@ public final class MaterialShareBuilder {
      * @param emptyViewTitleResourceId resource ID of title of the empty view
      * @return self
      */
-    public MaterialShareBuilder withEmptyViewTitle(@StringRes int emptyViewTitleResourceId) {
+    public MaterialActivityChooserBuilder withEmptyViewTitle(@StringRes int emptyViewTitleResourceId) {
         mEmptyViewTitleResourceId = emptyViewTitleResourceId;
         return this;
     }
@@ -132,7 +132,7 @@ public final class MaterialShareBuilder {
      * @param actionPendingIntent pending intent to be fired once the button is clicked
      * @return self
      */
-    public MaterialShareBuilder withEmptyViewAction(@NonNull PendingIntent actionPendingIntent) {
+    public MaterialActivityChooserBuilder withEmptyViewAction(@NonNull PendingIntent actionPendingIntent) {
         mActionPendingIntent = actionPendingIntent;
         return this;
     }
@@ -145,7 +145,7 @@ public final class MaterialShareBuilder {
      * @param actionPendingIntent pending intent to be fired once the button is clicked
      * @return self
      */
-    public MaterialShareBuilder withEmptyViewAction(@NonNull String emptyViewButtonText, @NonNull PendingIntent actionPendingIntent) {
+    public MaterialActivityChooserBuilder withEmptyViewAction(@NonNull String emptyViewButtonText, @NonNull PendingIntent actionPendingIntent) {
         mEmptyViewButtonText = emptyViewButtonText;
         return withEmptyViewAction(actionPendingIntent);
     }
@@ -158,7 +158,7 @@ public final class MaterialShareBuilder {
      * @param actionPendingIntent pending intent to be fired once the button is clicked
      * @return self
      */
-    public MaterialShareBuilder withEmptyViewAction(@StringRes int emptyViewButtonTextResourceId, @NonNull PendingIntent actionPendingIntent) {
+    public MaterialActivityChooserBuilder withEmptyViewAction(@StringRes int emptyViewButtonTextResourceId, @NonNull PendingIntent actionPendingIntent) {
         mEmptyViewButtonTextResourceId = emptyViewButtonTextResourceId;
         return withEmptyViewAction(actionPendingIntent);
     }
@@ -169,7 +169,7 @@ public final class MaterialShareBuilder {
      * @param packageNames an array of package names for which to use a secondary intent
      * @return self
      */
-    public MaterialShareBuilder withSecondaryIntent(@NonNull Intent secondaryIntent, @NonNull String ... packageNames) {
+    public MaterialActivityChooserBuilder withSecondaryIntent(@NonNull Intent secondaryIntent, @NonNull String ... packageNames) {
         if (packageNames.length > 0) {
             for (String packageName : packageNames) {
                 if (!TextUtils.isEmpty(packageName)) {
@@ -189,30 +189,30 @@ public final class MaterialShareBuilder {
             return;
         }
         Intent materialShareIntent = new Intent(mContext, mActivityClass);
-        materialShareIntent.putExtra(MaterialShareActivity.INTENT_KEY, mIntent);
+        materialShareIntent.putExtra(MaterialActivityChooserActivity.INTENT_KEY, mIntent);
         if (mTitle != null) {
-            materialShareIntent.putExtra(MaterialShareActivity.TITLE_KEY, mTitle);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.TITLE_KEY, mTitle);
         }
         if (mTitleResourceId != 0) {
-            materialShareIntent.putExtra(MaterialShareActivity.TITLE_RESOURCE_ID_KEY, mTitleResourceId);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.TITLE_RESOURCE_ID_KEY, mTitleResourceId);
         }
         if (mCustomEmptyViewLayoutResourceId != 0) {
-            materialShareIntent.putExtra(MaterialShareActivity.EMPTY_VIEW_LAYOUT_KEY, mCustomEmptyViewLayoutResourceId);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.EMPTY_VIEW_LAYOUT_KEY, mCustomEmptyViewLayoutResourceId);
         }
         if (mEmptyViewTitle != null) {
-            materialShareIntent.putExtra(MaterialShareActivity.EMPTY_VIEW_TITLE_KEY, mEmptyViewTitle);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.EMPTY_VIEW_TITLE_KEY, mEmptyViewTitle);
         }
         if (mEmptyViewTitleResourceId != 0) {
-            materialShareIntent.putExtra(MaterialShareActivity.EMPTY_VIEW_TITLE_RESOURCE_ID_KEY, mEmptyViewTitleResourceId);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.EMPTY_VIEW_TITLE_RESOURCE_ID_KEY, mEmptyViewTitleResourceId);
         }
         if (mEmptyViewButtonText != null) {
-            materialShareIntent.putExtra(MaterialShareActivity.EMPTY_VIEW_BUTTON_TITLE_KEY, mEmptyViewButtonText);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.EMPTY_VIEW_BUTTON_TITLE_KEY, mEmptyViewButtonText);
         }
         if (mEmptyViewButtonTextResourceId != 0) {
-            materialShareIntent.putExtra(MaterialShareActivity.EMPTY_VIEW_BUTTON_TITLE_RESOURCE_ID_KEY, mEmptyViewButtonTextResourceId);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.EMPTY_VIEW_BUTTON_TITLE_RESOURCE_ID_KEY, mEmptyViewButtonTextResourceId);
         }
         if (mActionPendingIntent != null) {
-            materialShareIntent.putExtra(MaterialShareActivity.EMPTY_VIEW_ACTION_KEY, mActionPendingIntent);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.EMPTY_VIEW_ACTION_KEY, mActionPendingIntent);
         }
         if (!secondaryIntentsForPackages.isEmpty()) {
             for (String packageName : secondaryIntentsForPackages.keySet()) {
@@ -223,7 +223,7 @@ public final class MaterialShareBuilder {
                 }
             }
 
-            materialShareIntent.putExtra(MaterialShareActivity.SECONDARY_INTENTS_KEY, secondaryIntentsForPackages);
+            materialShareIntent.putExtra(MaterialActivityChooserActivity.SECONDARY_INTENTS_KEY, secondaryIntentsForPackages);
         }
         mContext.startActivity(materialShareIntent);
     }

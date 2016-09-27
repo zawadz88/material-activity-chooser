@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="msp_black_40">#66000000</color>
-    <color name="msp_black_54">#89000000</color>
-    <color name="msp_black_87">#DD000000</color>
+    <color name="mac_black_40">#66000000</color>
+    <color name="mac_black_54">#89000000</color>
+    <color name="mac_black_87">#DD000000</color>
 
-    <color name="msp_light_grey">#BDBDBD</color>
+    <color name="mac_light_grey">#BDBDBD</color>
 
 </resources>

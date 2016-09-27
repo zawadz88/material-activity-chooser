@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="?attr/msp_activityItemStyle"
+    style="?attr/mac_activityItemStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="top|center_horizontal"
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/item_activity_icon"
-        style="?attr/msp_activityItemIconStyle"
+        android:id="@+id/mac_item_activity_icon"
+        style="?attr/mac_activityItemIconStyle"
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/item_activity_label"
-        style="?attr/msp_activityItemLabelStyle"
+        android:id="@+id/mac_item_activity_label"
+        style="?attr/mac_activityItemLabelStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Some app" />

@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 
-import com.github.zawadz88.activitychooser.MaterialShareBuilder;
+import com.github.zawadz88.activitychooser.MaterialActivityChooserBuilder;
 import com.github.zawadz88.sample.util.FileUtil;
 
 import java.io.File;
@@ -31,16 +31,22 @@ public class SampleActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.activity_sample_stock_share_text)
+    public void onStockShareTextClicked() {
+        Intent chooserIntent = Intent.createChooser(getDefaultShareIntent(), "Share via");
+        startActivity(chooserIntent);
+    }
+
     @OnClick(R.id.activity_sample_share_text)
     public void onShareTextClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getDefaultShareIntent())
                 .show();
     }
 
     @OnClick(R.id.activity_sample_share_text_with_title)
     public void onShareTextWithTitleClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getDefaultShareIntent())
                 .withTitle("Some custom title")
                 .show();
@@ -48,7 +54,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_share_text_with_title_from_resource)
     public void onShareTextWithTitleFromResourceClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getDefaultShareIntent())
                 .withTitle(R.string.custom_share_title)
                 .show();
@@ -56,7 +62,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_share_text_with_secondary_intents)
     public void onShareTextClickedWithSecondaryIntents() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getDefaultShareIntent())
                 .withSecondaryIntent(getSecondaryShareIntent(),
                         "com.google.android.gm" /* GMail */,
@@ -69,22 +75,22 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_share_text_styled)
     public void onShareTextStyledClicked() {
-        new MaterialShareBuilder(this)
-                .withActivity(StyledMaterialShareActivity.class)
+        new MaterialActivityChooserBuilder(this)
+                .withActivity(StyledActivityChooserActivity.class)
                 .withIntent(getDefaultShareIntent())
                 .show();
     }
 
     @OnClick(R.id.activity_sample_show_empty_default)
     public void onShowEmptyDefaultClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .show();
     }
 
     @OnClick(R.id.activity_sample_show_empty_custom_text)
     public void onShowEmptyCustomTextClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .withEmptyViewTitle("No activities found!")
                 .show();
@@ -92,7 +98,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_show_empty_custom_text_from_resource)
     public void onShowEmptyCustomTextFromResourceClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .withEmptyViewTitle(R.string.custom_empty_view_title)
                 .show();
@@ -100,7 +106,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_show_empty_with_custom_action)
     public void onShowEmptyCustomActionClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .withEmptyViewAction(getActionPendingIntent())
                 .show();
@@ -108,7 +114,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_show_empty_with_custom_action_text)
     public void onShowEmptyCustomActionTextClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .withEmptyViewAction("Click me!", getActionPendingIntent())
                 .show();
@@ -116,7 +122,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_show_empty_with_custom_action_text_from_resource)
     public void onShowEmptyCustomActiontextFromResourceClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .withEmptyViewTitle(R.string.custom_empty_view_title)
                 .withEmptyViewAction(R.string.custom_empty_view_button_title, getActionPendingIntent())
@@ -125,7 +131,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_show_empty_with_custom_view)
     public void onShowEmptyWithCustomViewClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
                 .withEmptyViewCustomView(R.layout.layout_custom_empty_view)
                 .show();
@@ -133,9 +139,9 @@ public class SampleActivity extends AppCompatActivity {
 
     @OnClick(R.id.activity_sample_track_clicked_items)
     public void onTrackClickedItemsClicked() {
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(getDefaultShareIntent())
-                .withActivity(TrackingMaterialShareActivity.class)
+                .withActivity(TrackingActivityChooserActivity.class)
                 .show();
     }
 
@@ -148,7 +154,7 @@ public class SampleActivity extends AppCompatActivity {
         intent.setDataAndType(uri, mimeType);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-        new MaterialShareBuilder(this)
+        new MaterialActivityChooserBuilder(this)
                 .withIntent(intent)
                 .withTitle("Preview PDF")
                 .withEmptyViewTitle("No app found that can open a PDF file")

@@ -4,9 +4,9 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.github.zawadz88.activitychooser.MaterialShareActivity;
+import com.github.zawadz88.activitychooser.MaterialActivityChooserActivity;
 
-public class TrackingMaterialShareActivity extends MaterialShareActivity {
+public class TrackingActivityChooserActivity extends MaterialActivityChooserActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

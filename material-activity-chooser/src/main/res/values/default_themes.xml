@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MSPTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="MACTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@android:color/black</item>
-        <item name="colorPrimaryDark">@color/msp_black_40</item>
-        <item name="android:windowAnimationStyle">@style/MSPNoWindowAnimation</item>
+        <item name="colorPrimaryDark">@color/mac_black_40</item>
+        <item name="android:windowAnimationStyle">@style/MACNoWindowAnimation</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
 
-        <item name="msp_bottomSheetStyle">@style/MSPBottomSheet</item>
-        <item name="msp_bottomSheetTitleStyle">@style/MSPBottomSheetTitle</item>
+        <item name="mac_bottomSheetStyle">@style/MACBottomSheet</item>
+        <item name="mac_bottomSheetTitleStyle">@style/MACBottomSheetTitle</item>
 
-        <item name="msp_emptyViewStyle">@style/MSPEmptyView</item>
-        <item name="msp_emptyViewTitleStyle">@style/MSPEmptyViewTitle</item>
-        <item name="msp_emptyViewButtonStyle">@style/MSPEmptyViewButton</item>
+        <item name="mac_emptyViewStyle">@style/MACEmptyView</item>
+        <item name="mac_emptyViewTitleStyle">@style/MACEmptyViewTitle</item>
+        <item name="mac_emptyViewButtonStyle">@style/MACEmptyViewButton</item>
 
-        <item name="msp_activityItemStyle">@style/MSPActivityItem</item>
-        <item name="msp_activityItemIconStyle">@style/MSPActivityItemIcon</item>
-        <item name="msp_activityItemLabelStyle">@style/MSPActivityItemLabel</item>
+        <item name="mac_activityItemStyle">@style/MACActivityItem</item>
+        <item name="mac_activityItemIconStyle">@style/MACActivityItemIcon</item>
+        <item name="mac_activityItemLabelStyle">@style/MACActivityItemLabel</item>
 
-        <item name="msp_activityItemSpanCount">@integer/msp_span_count</item>
+        <item name="mac_activityItemSpanCount">@integer/mac_span_count</item>
     </style>
 
 </resources>

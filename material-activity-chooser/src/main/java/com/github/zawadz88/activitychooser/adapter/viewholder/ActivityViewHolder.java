@@ -28,8 +28,8 @@ public class ActivityViewHolder extends RecyclerView.ViewHolder {
 
     public ActivityViewHolder(View itemView) {
         super(itemView);
-        iconView = (ImageView) itemView.findViewById(R.id.item_activity_icon);
-        labelView = (TextView) itemView.findViewById(R.id.item_activity_label);
+        iconView = (ImageView) itemView.findViewById(R.id.mac_item_activity_icon);
+        labelView = (TextView) itemView.findViewById(R.id.mac_item_activity_label);
     }
 
 }
