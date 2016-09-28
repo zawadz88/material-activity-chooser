@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Attributes -->
+    <public type="attr" name="mac_bottomSheetStyle" />
+    <public type="attr" name="mac_bottomSheetTitleStyle" />
+    <public type="attr" name="mac_emptyViewStyle" />
+    <public type="attr" name="mac_emptyViewTitleStyle" />
+    <public type="attr" name="mac_emptyViewButtonStyle" />
+    <public type="attr" name="mac_activityItemStyle" />
+    <public type="attr" name="mac_activityItemIconStyle" />
+    <public type="attr" name="mac_activityItemLabelStyle" />
+
+    <public type="attr" name="mac_activityItemSpanCount" />
+
+    <public type="attr" name="state_over_content" />
+
+    <!-- Styles -->
+    <public type="style" name="MACBottomSheet" />
+    <public type="style" name="MACBottomSheetTitle" />
+    <public type="style" name="MACActivityItem" />
+    <public type="style" name="MACActivityItemIcon" />
+    <public type="style" name="MACActivityItemLabel" />
+    <public type="style" name="MACEmptyView" />
+    <public type="style" name="MACEmptyViewTitle" />
+    <public type="style" name="MACEmptyViewButton" />
+
+    <!-- Themes -->
+    <public type="style" name="MACTheme" />
+
+</resources>

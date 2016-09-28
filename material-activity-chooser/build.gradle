@@ -42,6 +42,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets.all { sourceSet ->
+        sourceSet.res.srcDirs += ['src/main/res-public']
+    }
 }
 
 dependencies {

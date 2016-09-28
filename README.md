@@ -8,7 +8,7 @@ This library tries to mimic the activity chooser version you can see on Android 
 
 ## Download (from JCenter)
 ```groovy
-compile 'com.github.zawadz88:material-activity-chooser:0.1.0'
+compile 'com.github.zawadz88:material-activity-chooser:0.1.1'
 ```
 
 ## Supported features
