@@ -1,6 +1,6 @@
 # Android Material Activity Chooser
 
-This library allows to use Material activity choosers from Jelly Bean+.
+This library allows to use Material activity choosers from Jelly Bean+ to e.g. share a text or a link using a nice Material dialog.
 Material activity choosers are displayed as bottom sheet dialogs.
 Bottom sheets are described here: https://material.google.com/components/bottom-sheets.html 
 The actual implementation of activity choosers varies depending on the OS version.
