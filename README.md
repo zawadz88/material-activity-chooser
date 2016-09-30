@@ -8,11 +8,12 @@ This library tries to mimic the activity chooser version you can see on Android 
 
 ## Download (from JCenter)
 ```groovy
-compile 'com.github.zawadz88:material-activity-chooser:0.1.1'
+compile 'com.github.zawadz88:material-activity-chooser:0.2.0'
 ```
 
 ## Supported features
   - showing the activity chooser as a bottom sheet dialog on all OS versions starting from Jelly Bean (API 16)+
+  - a smooth animation when the items appear in the bottom sheet
   - setting custom bottom sheet titles
   - setting different intents per activity, e.g. to have different messages for different applications when sharing
   - use custom styles for the bottom sheet
@@ -152,7 +153,16 @@ You can inflate an entirely custom empty view as well, e.g.
 
 ## Styling the dialog to your own needs
 You can override the default styling of the Activity Chooser to your own needs.
-The easiest way is to override the 
+The easiest way is to override the ```MACTheme``` and replace the styles in the custom attributes. For more info see the sample app.
+
+## Disabling the item animation
+By default there is a layout animation on the RecyclerView which animates the items as they show up.
+It can be however disabled by extending the ```MACTheme``` and overriding ```mac_bottomSheetRecyclerViewStyle``` with a style with this animation disabled, e.g.
+```java
+    <style name="NoAnimationRecyclerViewStyle" parent="MACBottomSheetRecyclerView">
+        <item name="android:layoutAnimation">@null</item>
+    </style>
+```
 
 ## Tracking when an activity was clicked
 You might want to track/log when an activity has been selected to handle your intent. To do so you can extend the default MaterialActivityChooserActivity.

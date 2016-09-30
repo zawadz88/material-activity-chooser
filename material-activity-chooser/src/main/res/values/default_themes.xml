@@ -10,6 +10,7 @@
 
         <item name="mac_bottomSheetStyle">@style/MACBottomSheet</item>
         <item name="mac_bottomSheetTitleStyle">@style/MACBottomSheetTitle</item>
+        <item name="mac_bottomSheetRecyclerViewStyle">@style/MACBottomSheetRecyclerView</item>
 
         <item name="mac_emptyViewStyle">@style/MACEmptyView</item>
         <item name="mac_emptyViewTitleStyle">@style/MACEmptyViewTitle</item>

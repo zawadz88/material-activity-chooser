@@ -3,6 +3,7 @@
 
     <attr name="mac_bottomSheetStyle" format="reference" />
     <attr name="mac_bottomSheetTitleStyle" format="reference" />
+    <attr name="mac_bottomSheetRecyclerViewStyle" format="reference" />
     <attr name="mac_emptyViewStyle" format="reference" />
     <attr name="mac_emptyViewTitleStyle" format="reference" />
     <attr name="mac_emptyViewButtonStyle" format="reference" />

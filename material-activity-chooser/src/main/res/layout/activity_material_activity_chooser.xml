@@ -25,35 +25,34 @@
             style="?attr/mac_bottomSheetTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"/>
+            android:clickable="true" />
 
-        <android.support.v7.widget.RecyclerView
+        <com.github.zawadz88.activitychooser.widget.GridRecyclerView
             android:id="@+id/mac_recycler_view"
+            style="?attr/mac_bottomSheetRecyclerViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingBottom="@dimen/mac_recycler_view_padding_bottom" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:id="@+id/mac_empty_view"
             style="?attr/mac_emptyViewStyle"
-            android:visibility="gone"
-            android:clickable="true">
+            android:clickable="true"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/mac_empty_view_title"
+                style="?attr/mac_emptyViewTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mac_default_no_activities_found_message"
-                style="?attr/mac_emptyViewTitleStyle" />
+                android:text="@string/mac_default_no_activities_found_message" />
 
             <Button
                 android:id="@+id/mac_empty_view_button"
+                style="?attr/mac_emptyViewButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mac_default_empty_view_button_message"
-                style="?attr/mac_emptyViewButtonStyle"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ViewStub
                 android:id="@+id/mac_empty_view_custom_view_stub"

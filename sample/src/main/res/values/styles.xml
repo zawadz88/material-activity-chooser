@@ -12,6 +12,7 @@
         <item name="mac_bottomSheetTitleStyle">@style/CustomBottomSheetTitle</item>
         <item name="mac_activityItemLabelStyle">@style/CustomActivityItemLabel</item>
         <item name="mac_activityItemSpanCount">2</item>
+        <item name="mac_bottomSheetRecyclerViewStyle">@style/NoAnimationRecyclerViewStyle</item>
     </style>
 
     <style name="CustomBottomSheet" parent="MACBottomSheet">
@@ -22,6 +23,10 @@
     <style name="CustomBottomSheetTitle" parent="MACBottomSheetTitle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@android:color/black</item>
+    </style>
+
+    <style name="NoAnimationRecyclerViewStyle" parent="MACBottomSheetRecyclerView">
+        <item name="android:layoutAnimation">@null</item>
     </style>
 
     <style name="CustomActivityItemLabel" parent="MACActivityItemLabel">

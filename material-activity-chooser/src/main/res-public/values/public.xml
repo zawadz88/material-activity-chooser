@@ -3,6 +3,7 @@
     <!-- Attributes -->
     <public type="attr" name="mac_bottomSheetStyle" />
     <public type="attr" name="mac_bottomSheetTitleStyle" />
+    <public type="attr" name="mac_bottomSheetRecyclerViewStyle" />
     <public type="attr" name="mac_emptyViewStyle" />
     <public type="attr" name="mac_emptyViewTitleStyle" />
     <public type="attr" name="mac_emptyViewButtonStyle" />

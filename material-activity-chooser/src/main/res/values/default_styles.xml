@@ -30,6 +30,12 @@
         <item name="android:background">@drawable/mac_title_background_selector</item>
     </style>
 
+    <style name="MACBottomSheetRecyclerView">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:layoutAnimation">@anim/mac_grid_layout_animation</item>
+        <item name="android:paddingBottom">@dimen/mac_recycler_view_padding_bottom</item>
+    </style>
+
     <style name="MACActivityItem">
         <item name="android:paddingLeft">@dimen/mac_activity_item_lateral_padding</item>
         <item name="android:paddingRight">@dimen/mac_activity_item_lateral_padding</item>

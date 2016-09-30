@@ -6,7 +6,7 @@
     <string name="share_text_with_title">Share text with title</string>
     <string name="share_text_with_title_from_resource">Share text with title from resource</string>
     <string name="share_text_with_secondary_intents">Share text with secondary intents</string>
-    <string name="share_text_styled">Share text with custom styled activity</string>
+    <string name="share_text_styled">Share text with custom style without item animation</string>
     <string name="show_empty_default">Show default empty view</string>
     <string name="show_empty_custom_text_from_resource">Show empty view with custom text from resource</string>
     <string name="show_empty_custom_text">Show empty view with custom text</string>
