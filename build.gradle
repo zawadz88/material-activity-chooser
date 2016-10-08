@@ -29,7 +29,12 @@ configure(allprojects) {
         androidSupportLibraryVersion        = "24.2.1"
         butterknifeVersion                  = "8.4.0"
 
-        espressoVersion                     = "2.2.1"
+        runnerVersion                       = "0.5"
+        rulesVersion                        = "0.5"
+        espressoVersion                     = "2.2.2"
+        cucumberVersion                     = "1.2.2"
+        superReflectVersion                 = "1.0.1"
+        awaitilityVersion                   = "1.7.0"
     }
 
 }

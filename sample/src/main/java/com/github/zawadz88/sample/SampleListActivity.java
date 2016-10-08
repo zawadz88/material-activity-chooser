@@ -16,12 +16,15 @@ import java.io.File;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SampleActivity extends AppCompatActivity {
+public class SampleListActivity extends AppCompatActivity {
+
+    public static final String DEFAULT_EXTRA_TITLE = "Text to share";
+    public static final String DEFAULT_EXTRA_TEXT = "Shared link: http://www.github.com";
+    public static final String TEXT_PLAIN_TYPE = "text/plain";
+    public static final String MIME_TYPE_APPLICATION_PDF = "application/pdf";
+    public static final String PLAY_STORE_URL = "http://play.google.com/store/search?q=pdf&c=apps";
 
     private static final String FILE_AUTHORITY = BuildConfig.APPLICATION_ID + ".FILE_PROVIDER";
-
-    private static final String MIME_TYPE_APPLICATION_PDF = "application/pdf";
-
     private static final String PDF_FILE_NAME = "Latin-Lipsum.pdf";
 
     @Override
@@ -121,10 +124,9 @@ public class SampleActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.activity_sample_show_empty_with_custom_action_text_from_resource)
-    public void onShowEmptyCustomActiontextFromResourceClicked() {
+    public void onShowEmptyCustomActionTextFromResourceClicked() {
         new MaterialActivityChooserBuilder(this)
                 .withIntent(getUnsupportedIntent())
-                .withEmptyViewTitle(R.string.custom_empty_view_title)
                 .withEmptyViewAction(R.string.custom_empty_view_button_title, getActionPendingIntent())
                 .show();
     }
@@ -164,23 +166,22 @@ public class SampleActivity extends AppCompatActivity {
 
     @NonNull
     private PendingIntent getActionPendingIntent() {
-        String playStoreUrl = "http://play.google.com/store/search?q=pdf&c=apps";
-        return PendingIntent.getActivity(this, 0, new Intent(Intent.ACTION_VIEW, Uri.parse(playStoreUrl)), PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getActivity(this, 0, new Intent(Intent.ACTION_VIEW, Uri.parse(PLAY_STORE_URL)), PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @NonNull
     private Intent getDefaultShareIntent() {
         Intent shareTextIntent = new Intent(Intent.ACTION_SEND);
-        shareTextIntent.setType("text/plain");
-        shareTextIntent.putExtra(Intent.EXTRA_TITLE, "Text to share");
-        shareTextIntent.putExtra(Intent.EXTRA_TEXT, "Shared link: http://www.github.com");
+        shareTextIntent.setType(TEXT_PLAIN_TYPE);
+        shareTextIntent.putExtra(Intent.EXTRA_TITLE, DEFAULT_EXTRA_TITLE);
+        shareTextIntent.putExtra(Intent.EXTRA_TEXT, DEFAULT_EXTRA_TEXT);
         return shareTextIntent;
     }
 
     @NonNull
     private Intent getSecondaryShareIntent() {
         Intent shareTextIntent = new Intent(Intent.ACTION_SEND);
-        shareTextIntent.setType("text/plain");
+        shareTextIntent.setType(TEXT_PLAIN_TYPE);
         shareTextIntent.putExtra(Intent.EXTRA_TITLE, "Secondary text to share");
         shareTextIntent.putExtra(Intent.EXTRA_TEXT, "Secondary shared link: http://www.google.com");
         return shareTextIntent;
@@ -189,7 +190,7 @@ public class SampleActivity extends AppCompatActivity {
     @NonNull
     private Intent getTertiaryShareIntent() {
         Intent shareTextIntent = new Intent(Intent.ACTION_SEND);
-        shareTextIntent.setType("text/plain");
+        shareTextIntent.setType(TEXT_PLAIN_TYPE);
         shareTextIntent.putExtra(Intent.EXTRA_TITLE, "Tertiary text to share");
         shareTextIntent.putExtra(Intent.EXTRA_TEXT, "Tertiary shared link: http://www.facebook.com");
         return shareTextIntent;

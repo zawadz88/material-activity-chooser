@@ -15,7 +15,7 @@ public class TrackingActivityChooserActivity extends MaterialActivityChooserActi
 
     @Override
     public void onActivityClicked(ResolveInfo activity) {
-        Toast.makeText(this, "Application clicked: " + activity.activityInfo.packageName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Application clicked: " + activity.activityInfo.name, Toast.LENGTH_SHORT).show();
         super.onActivityClicked(activity);
     }
 }

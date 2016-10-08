@@ -18,6 +18,6 @@
     <string name="preview_pdf">Preview PDF</string>
 
     <string name="custom_share_title">Custom title</string>
-    <string name="custom_empty_view_title">Custom empty title\n\nLorem ipsum\nLorem ipsum\nLorem ipsum\nLorem ipsum\nLorem ipsum\nLorem ipsum</string>
+    <string name="custom_empty_view_title">Custom empty title</string>
     <string name="custom_empty_view_button_title">Click me, please</string>
 </resources>

@@ -1,30 +1,117 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion project.androidCompileSdkVersion
     buildToolsVersion("$androidBuildToolsVersion")
 
     defaultConfig {
-        applicationId "com.github.zawadz88.example"
+        applicationId "com.github.zawadz88.sample"
         minSdkVersion project.androidMinSdkVersion
         targetSdkVersion project.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.github.zawadz88.sample.test.CucumberAndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    adbOptions {
+        installOptions "-g", "-r"
     }
 }
 
 dependencies {
 
-    compile project(':material-activity-chooser')
+    debugCompile project(path: ':material-activity-chooser', configuration: 'debug')
+    releaseCompile project(path: ':material-activity-chooser', configuration: 'release')
 
     compile ("com.jakewharton:butterknife:$butterknifeVersion")
     apt ("com.jakewharton:butterknife-compiler:$butterknifeVersion")
+
+    androidTestCompile("com.android.support.test:runner:$runnerVersion")
+    androidTestCompile("com.android.support.test:rules:$rulesVersion")
+    androidTestCompile("com.android.support:support-annotations:$androidSupportLibraryVersion")
+    androidTestCompile ("com.android.support.test.espresso:espresso-core:$espressoVersion")
+    androidTestCompile ("com.android.support.test.espresso:espresso-intents:$espressoVersion")
+
+    androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$espressoVersion")
+    androidTestCompile("com.android.support:support-v4:$androidSupportLibraryVersion") {
+        force = true
+    }
+    androidTestCompile("com.android.support:appcompat-v7:$androidSupportLibraryVersion") {
+        force = true
+    }
+    androidTestCompile("com.android.support:recyclerview-v7:$androidSupportLibraryVersion") {
+        force = true
+    }
+    androidTestCompile("com.android.support:design:$androidSupportLibraryVersion") {
+        force = true
+    }
+
+    androidTestCompile ("info.cukes:cucumber-android:$cucumberVersion") {
+        exclude group: 'com.google.guava', module: 'guava'
+    }
+    androidTestCompile ("info.cukes:cucumber-picocontainer:$cucumberVersion")
+
+    androidTestCompile ("com.jayway.awaitility:awaitility:$awaitilityVersion") {
+        exclude group: 'org.hamcrest'
+        exclude group: 'org.objenesis'
+        exclude group: 'cglib'
+    }
+
+    androidTestCompile ("de.jodamob.android:SuperReflect:$superReflectVersion")
+}
+
+task copyCompiledLibraryClasses(type: Copy, dependsOn: "assembleDebugAndroidTest") {
+    from "${project.parent.childProjects['material-activity-chooser'].buildDir}/intermediates/classes/debug/com/github/zawadz88/activitychooser"
+    into "${project.buildDir}/intermediates/classes/debug/com/github/zawadz88/activitychooser"
+}
+
+android.applicationVariants.all { variant ->
+    tasks['connectedDebugAndroidTest'].dependsOn copyCompiledLibraryClasses
+}
+
+task jacocoTestReport(type:JacocoReport, dependsOn: "connectedDebugAndroidTest") {
+
+    group = "Reporting"
+
+    description = "Generate Jacoco coverage reports"
+
+    // exclude auto-generated classes and tests
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/BuildConfig.*',
+                      '**/Manifest*.*',
+                      '**/*IScript*.*',
+                      'android/**/*.*',
+                      '**/SampleListActivity_ViewBinding*']
+
+    def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug",
+            excludes: fileFilter)
+
+
+    def mainSrc = "${project.projectDir}/src/main/java"
+    def libSrc = "${project.parent.projectDir}/material-activity-chooser/src/main/java"
+
+    sourceDirectories = files([mainSrc, libSrc])
+    classDirectories = files([debugTree])
+
+    executionData = fileTree(dir: project.projectDir, includes:
+            ['**/*.exec', '**/*.ec'])
+
+    reports {
+        xml.enabled = false
+        csv.enabled = false
+        html.enabled = true
+        html.destination = "${buildDir}/reports/jacoco"
+    }
 }
