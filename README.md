@@ -197,6 +197,25 @@ and also declared when building the activity chooser:
         .show();
 ```
 
+## Maintenance
+The library is tested with Espresso + Cucumber. To run the tests you need to execute:
+
+```bash
+./gradlew connectedDebugAndroidTest 
+```
+
+This additionally fetches the Cucumber reports from the device and saves them to ```sample/build/reports/cucumber```.
+
+Tests can be also executed with code coverage. To do so execute:
+
+```bash
+./gradlew jacocoTestReport 
+```
+
+The coverage report can be then found at ```sample/build/reports/jacoco```.
+
+It is recommended to install _Cucumber for Java_ and _Gherkin_ plugins in Android Studio for better Cucumber integration inside of the IDE.
+
 ## Notes
 This library comes with a number of dependencies.<br/>
 It relies on the BottomSheetBehavior from Android Support Design Library and it uses a RecyclerView for displaying a list of items.
