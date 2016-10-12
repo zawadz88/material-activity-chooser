@@ -71,11 +71,6 @@ dependencies {
     androidTestCompile ("de.jodamob.android:SuperReflect:$superReflectVersion")
 }
 
-task copyCompiledLibraryClasses(type: Copy, dependsOn: 'assembleDebugAndroidTest') {
-    from "${project.parent.childProjects['material-activity-chooser'].buildDir}/intermediates/classes/debug/com/github/zawadz88/activitychooser"
-    into "${project.buildDir}/intermediates/classes/debug/com/github/zawadz88/activitychooser"
-}
-
 def reportsDirectory = "$buildDir/reports/cucumber"
 def fetchCucumberReportTask = task('fetchCucumberReport', type: Exec, group: 'reporting') {
     executable "${android.getAdbExe().toString()}"
@@ -90,7 +85,6 @@ def fetchCucumberReportTask = task('fetchCucumberReport', type: Exec, group: 're
 
 tasks.whenTaskAdded { task ->
     if (task.name == 'connectedDebugAndroidTest') {
-        task.dependsOn copyCompiledLibraryClasses
         task.finalizedBy {
             fetchCucumberReportTask
         }
@@ -115,12 +109,14 @@ task jacocoTestReport(type:JacocoReport, dependsOn: 'connectedDebugAndroidTest')
     def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug",
             excludes: fileFilter)
 
+    def libraryDebugTree = fileTree(dir: "${project.parent.childProjects['material-activity-chooser'].buildDir}/intermediates/classes/debug",
+            excludes: fileFilter)
 
     def mainSrc = "${project.projectDir}/src/main/java"
     def libSrc = "${project.parent.projectDir}/material-activity-chooser/src/main/java"
 
     sourceDirectories = files([mainSrc, libSrc])
-    classDirectories = files([debugTree])
+    classDirectories = files([debugTree, libraryDebugTree])
 
     executionData = fileTree(dir: project.projectDir, includes:
             ['**/*.exec', '**/*.ec'])

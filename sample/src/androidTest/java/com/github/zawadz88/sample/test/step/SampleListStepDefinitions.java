@@ -1,19 +1,26 @@
 package com.github.zawadz88.sample.test.step;
 
 import android.app.Instrumentation;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.test.espresso.intent.Intents;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.runner.intercepting.SingleActivityFactory;
 import android.support.v7.widget.AppCompatImageView;
 
 import com.github.zawadz88.activitychooser.MaterialActivityChooserActivity;
 import com.github.zawadz88.sample.R;
 import com.github.zawadz88.sample.SampleListActivity;
+import com.github.zawadz88.sample.test.rule.IntentTestRuleWithActivityFactory;
 import com.github.zawadz88.sample.test.util.ActivityUtils;
 import com.github.zawadz88.sample.test.util.IdlingResourceBottomSheetCallback;
 
@@ -21,6 +28,8 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.Scenario;
@@ -79,8 +88,12 @@ import static org.hamcrest.Matchers.startsWith;
 @RunWith(AndroidJUnit4.class)
 public class SampleListStepDefinitions {
 
+    private static final int TEST_REQUEST_CODE = 123;
+
+    private static final String DUMMY_ACTION = "DUMMY_ACTION";
+
     @Rule
-    public IntentsTestRule<SampleListActivity> mActivityRule = new IntentsTestRule<>(SampleListActivity.class,
+    public IntentTestRuleWithActivityFactory<SampleListActivity> mActivityRule = new IntentTestRuleWithActivityFactory<>(getActivityFactory(),
             true,
             false);
 
@@ -88,14 +101,30 @@ public class SampleListStepDefinitions {
 
     private IdlingResourceBottomSheetCallback mIdlingResourceBottomSheetCallback;
 
+    private PendingIntent mStubbedEmptyViewActionPendingIntent;
+
+    private AtomicBoolean mTestBroadcastReceived = new AtomicBoolean(false);
+
+    private BroadcastReceiver mTestBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mTestBroadcastReceived.set(true);
+        }
+    };
+
     @Before
     public void before() {
         Espresso.registerIdlingResources(mBottomSheetIdlingResource);
+        Intent dummyIntent = new Intent(DUMMY_ACTION);
+        mStubbedEmptyViewActionPendingIntent = PendingIntent.getBroadcast(InstrumentationRegistry.getTargetContext(), TEST_REQUEST_CODE, dummyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @After
     public void after() {
         Espresso.unregisterIdlingResources(mBottomSheetIdlingResource);
+        try {
+            InstrumentationRegistry.getTargetContext().unregisterReceiver(mTestBroadcastReceiver);
+        } catch (IllegalArgumentException ignored){}
     }
 
     @SuppressWarnings("UnusedParameters")
@@ -103,6 +132,22 @@ public class SampleListStepDefinitions {
     public static void after(Scenario scenario) {
         ActivityUtils.finishOpenActivities();
         Intents.release();
+    }
+
+    private SingleActivityFactory<SampleListActivity> getActivityFactory() {
+        return new SingleActivityFactory<SampleListActivity>(SampleListActivity.class) {
+            @Override
+            protected SampleListActivity create(Intent intent) {
+                return new SampleListActivity() {
+                    @NonNull
+                    @Override
+                    protected PendingIntent getActionPendingIntent() {
+                        //we change the pending intent that gets created to a custom one so that we can actually check if it gets sent
+                        return mStubbedEmptyViewActionPendingIntent;
+                    }
+                };
+            }
+        };
     }
 
     @Given("^I see samples list$")
@@ -162,6 +207,12 @@ public class SampleListStepDefinitions {
         // TODO: 09/10/2016 this is a naive implementation, if there are many items then this test could fail
         onView(withId(R.id.mac_bottom_sheet)).perform(swipeBottomSheetUp());
         onView(withId(R.id.mac_recycler_view)).perform(actionOnItem(withChild(withText(appName)), click()));
+    }
+
+    @When("^I tap the empty view action button$")
+    public void i_tap_the_empty_view_action_button() {
+        InstrumentationRegistry.getTargetContext().registerReceiver(mTestBroadcastReceiver, new IntentFilter(DUMMY_ACTION));
+        onView(withId(R.id.mac_empty_view_button)).perform(click());
     }
 
     @Then("^I should see a system activity chooser$")
@@ -291,7 +342,11 @@ public class SampleListStepDefinitions {
         onView(withText(startsWith("Application clicked: ")))
                 .inRoot(withDecorView(not(is(ActivityUtils.getCurrentActivity(mActivityRule).getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
+    }
 
+    @Then("^I should see the action result$")
+    public void i_should_see_the_action_result() {
+        await().atMost(3, TimeUnit.SECONDS).untilTrue(mTestBroadcastReceived);
     }
 
     private void waitUntilBottomSheetDisplayed() {

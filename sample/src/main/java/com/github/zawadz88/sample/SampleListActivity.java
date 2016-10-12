@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 
@@ -165,7 +166,8 @@ public class SampleListActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private PendingIntent getActionPendingIntent() {
+    @VisibleForTesting
+    protected PendingIntent getActionPendingIntent() {
         return PendingIntent.getActivity(this, 0, new Intent(Intent.ACTION_VIEW, Uri.parse(PLAY_STORE_URL)), PendingIntent.FLAG_UPDATE_CURRENT);
     }
 

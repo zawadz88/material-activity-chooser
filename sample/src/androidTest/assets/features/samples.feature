@@ -129,6 +129,11 @@ Feature: Samples app
     And I should see empty view message 'Action couldn't be completed.'
     And I should see an action button in empty view with text 'Resolve'
 
+  Scenario: Tapping on empty view action
+    Given I see an activity chooser with 'Show empty view with custom action' items
+    When I tap the empty view action button
+    And I should see the action result
+
   Scenario: Showing an activity chooser with custom empty view action text
     When I tap on the 'Show empty view with custom action text' button
     Then I should see an activity chooser with text 'Share via'

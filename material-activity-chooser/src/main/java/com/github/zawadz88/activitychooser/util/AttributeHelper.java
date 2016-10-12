@@ -9,7 +9,9 @@ import android.support.annotation.AttrRes;
  *
  * @author Piotr Zawadzki
  */
-public class AttributeHelper {
+public final class AttributeHelper {
+
+    private AttributeHelper(){}
 
     /**
      * Gets an integer from an attribute or uses a default value if not present.
