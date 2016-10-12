@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-apply plugin: 'jacoco'
+apply from: '../sample/code_coverage.gradle'
 
 android {
     compileSdkVersion project.androidCompileSdkVersion
@@ -14,6 +14,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "com.github.zawadz88.sample.test.CucumberAndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,10 +22,12 @@ android {
         }
         debug {
             testCoverageEnabled true
+            buildConfigField "String", "CUCUMBER_TAGS", "\"${getCucumberTags()}\""
         }
     }
 
     adbOptions {
+        //add all permissions on install so that there's WRITE_STORAGE permission needed for storing Cucumber reports
         installOptions "-g", "-r"
     }
 }
@@ -71,60 +74,12 @@ dependencies {
     androidTestCompile ("de.jodamob.android:SuperReflect:$superReflectVersion")
 }
 
-def reportsDirectory = "$buildDir/reports/cucumber"
-def fetchCucumberReportTask = task('fetchCucumberReport', type: Exec, group: 'reporting') {
-    executable "${android.getAdbExe().toString()}"
-    args 'pull',
-            '/sdcard/activity-chooser-cucumber-report',
-            reportsDirectory
-
-    doFirst {
-        new File(reportsDirectory).mkdirs()
-    }
-}
-
-tasks.whenTaskAdded { task ->
-    if (task.name == 'connectedDebugAndroidTest') {
-        task.finalizedBy {
-            fetchCucumberReportTask
-        }
-    }
-}
-
-task jacocoTestReport(type:JacocoReport, dependsOn: 'connectedDebugAndroidTest') {
-
-    group = 'Reporting'
-
-    description = 'Generate Jacoco coverage reports'
-
-    // exclude auto-generated classes and tests
-    def fileFilter = ['**/R.class',
-                      '**/R$*.class',
-                      '**/BuildConfig.*',
-                      '**/Manifest*.*',
-                      '**/*IScript*.*',
-                      'android/**/*.*',
-                      '**/SampleListActivity_ViewBinding*']
-
-    def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug",
-            excludes: fileFilter)
-
-    def libraryDebugTree = fileTree(dir: "${project.parent.childProjects['material-activity-chooser'].buildDir}/intermediates/classes/debug",
-            excludes: fileFilter)
-
-    def mainSrc = "${project.projectDir}/src/main/java"
-    def libSrc = "${project.parent.projectDir}/material-activity-chooser/src/main/java"
-
-    sourceDirectories = files([mainSrc, libSrc])
-    classDirectories = files([debugTree, libraryDebugTree])
-
-    executionData = fileTree(dir: project.projectDir, includes:
-            ['**/*.exec', '**/*.ec'])
-
-    reports {
-        xml.enabled = false
-        csv.enabled = false
-        html.enabled = true
-        html.destination = "${buildDir}/reports/jacoco"
-    }
+/**
+ * Reads Cucumber tags from project properties, e.g. from:
+ * ./gradlew connectedDebugAndroidTest -Ptags="@pdf-reader-apps-installed"
+ * See: https://github.com/cucumber/cucumber/wiki/Tags#logically-anding-and-oring-tags
+ * See: cucumber.runtime.android.Arguments#getCucumberOptionsString(bundle)
+ */
+def getCucumberTags() {
+    project.hasProperty("tags") ? project.getProperties().get("tags") : ""
 }

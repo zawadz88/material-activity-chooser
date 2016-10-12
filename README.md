@@ -197,7 +197,8 @@ and also declared when building the activity chooser:
         .show();
 ```
 
-## Maintenance
+## Testing
+### Basic info
 The library is tested with Espresso + Cucumber. To run the tests you need to execute:
 
 ```bash
@@ -206,6 +207,9 @@ The library is tested with Espresso + Cucumber. To run the tests you need to exe
 
 This additionally fetches the Cucumber reports from the device and saves them to ```sample/build/reports/cucumber```.
 
+It is also recommended to install _Cucumber for Java_ and _Gherkin_ plugins in Android Studio for better Cucumber integration inside of the IDE.
+
+### Code coverage
 Tests can be also executed with code coverage. To do so execute:
 
 ```bash
@@ -214,7 +218,21 @@ Tests can be also executed with code coverage. To do so execute:
 
 The coverage report can be then found at ```sample/build/reports/jacoco```.
 
-It is recommended to install _Cucumber for Java_ and _Gherkin_ plugins in Android Studio for better Cucumber integration inside of the IDE.
+### Running selected scenarios only
+All the tested scenarios have Cucumber tags. You can run a specific test by using this tag. 
+Assuming you wanted to run only the scenario with tag _@sample-scenario-22_ you would do the following:
+
+* From command line:
+
+```bash
+./gradlew connectedDebugAndroidTest -Ptags="@sample-scenario-22"
+```
+
+* In Android Studio you need to edit the current Android Tests run configuration and under _Extra options_ enter:
+
+```
+-e tags @sample-scenario-22
+```
 
 ## Notes
 This library comes with a number of dependencies.<br/>

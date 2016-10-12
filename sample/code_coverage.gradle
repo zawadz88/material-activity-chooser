@@ -1,0 +1,59 @@
+apply plugin: 'jacoco'
+
+def reportsDirectory = "$buildDir/reports/cucumber"
+def fetchCucumberReportTask = task('fetchCucumberReport', type: Exec, group: 'reporting') {
+    executable "${android.getAdbExe().toString()}"
+    args 'pull',
+            '/sdcard/activity-chooser-cucumber-report',
+            reportsDirectory
+
+    doFirst {
+        new File(reportsDirectory).mkdirs()
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'connectedDebugAndroidTest') {
+        task.finalizedBy {
+            fetchCucumberReportTask
+        }
+    }
+}
+
+task jacocoTestReport(type:JacocoReport, dependsOn: 'connectedDebugAndroidTest') {
+
+    group = 'Reporting'
+
+    description = 'Generate Jacoco coverage reports'
+
+    // exclude auto-generated classes and tests
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/BuildConfig.*',
+                      '**/Manifest*.*',
+                      '**/*IScript*.*',
+                      'android/**/*.*',
+                      '**/SampleListActivity_ViewBinding*']
+
+    def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug",
+            excludes: fileFilter)
+
+    def libraryDebugTree = fileTree(dir: "${project.parent.childProjects['material-activity-chooser'].buildDir}/intermediates/classes/debug",
+            excludes: fileFilter)
+
+    def mainSrc = "${project.projectDir}/src/main/java"
+    def libSrc = "${project.parent.projectDir}/material-activity-chooser/src/main/java"
+
+    sourceDirectories = files([mainSrc, libSrc])
+    classDirectories = files([debugTree, libraryDebugTree])
+
+    executionData = fileTree(dir: project.projectDir, includes:
+            ['**/*.exec', '**/*.ec'])
+
+    reports {
+        xml.enabled = false
+        csv.enabled = false
+        html.enabled = true
+        html.destination = "${buildDir}/reports/jacoco"
+    }
+}
