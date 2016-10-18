@@ -222,8 +222,10 @@ public final class MaterialActivityChooserBuilder {
                     Log.w(TAG, "Removing package '" + packageName + "' since its secondary intent is incompatible with the main intent!");
                 }
             }
+            if (!secondaryIntentsForPackages.isEmpty()) {
+                materialShareIntent.putExtra(MaterialActivityChooserActivity.SECONDARY_INTENTS_KEY, secondaryIntentsForPackages);
+            }
 
-            materialShareIntent.putExtra(MaterialActivityChooserActivity.SECONDARY_INTENTS_KEY, secondaryIntentsForPackages);
         }
         mContext.startActivity(materialShareIntent);
     }

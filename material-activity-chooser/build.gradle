@@ -51,6 +51,15 @@ android {
     sourceSets.all { sourceSet ->
         sourceSet.res.srcDirs += ['src/main/res-public']
     }
+
+    testOptions {
+        //workaround so that code coverage is working with Robolectric: http://stackoverflow.com/a/35769943/973379
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
 }
 
 dependencies {
@@ -61,6 +70,12 @@ dependencies {
     compile ("com.android.support:recyclerview-v7:$androidSupportLibraryVersion")
     compile ("com.android.support:design:$androidSupportLibraryVersion")
 
+    testCompile("junit:junit:$junitVersion")
+    testCompile("org.mockito:mockito-core:$mockitoVersion")
+    testCompile("org.robolectric:robolectric:$robolectricVersion") {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
 }
 
 gradle.taskGraph.beforeTask { Task task ->

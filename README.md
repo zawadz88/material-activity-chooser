@@ -198,8 +198,10 @@ and also declared when building the activity chooser:
 ```
 
 ## Testing
-### Basic info
-The library is tested with Espresso + Cucumber. To run the tests you need to execute:
+The library is tested mainly with Espresso + Cucumber as well as a few unit tests. 
+
+### Instrumentation tests
+To run instrumentation tests you need to execute:
 
 ```bash
 ./gradlew connectedDebugAndroidTest 
@@ -209,6 +211,13 @@ This additionally fetches the Cucumber reports from the device and saves them to
 
 It is also recommended to install _Cucumber for Java_ and _Gherkin_ plugins in Android Studio for better Cucumber integration inside of the IDE.
 
+### Unit tests
+To run unit tests you need to execute:
+
+```bash
+./gradlew testDebugUnitTest 
+```
+
 ### Code coverage
 Tests can be also executed with code coverage. To do so execute:
 
@@ -216,9 +225,9 @@ Tests can be also executed with code coverage. To do so execute:
 ./gradlew jacocoTestReport 
 ```
 
-The coverage report can be then found at ```sample/build/reports/jacoco```.
+The coverage report can be then found at ```sample/build/reports/jacoco```. This task cleans the project, runs the unit tests & instrumentation tests and at the end it creates the report.
 
-### Running selected scenarios only
+### Running selected scenarios only for instrumentation tests
 All the tested scenarios have Cucumber tags. You can run a specific test by using this tag. 
 Assuming you wanted to run only the scenario with tag _@sample-scenario-22_ you would do the following:
 

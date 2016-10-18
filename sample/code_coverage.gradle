@@ -20,7 +20,7 @@ tasks.whenTaskAdded { task ->
     }
 }
 
-task jacocoTestReport(type:JacocoReport, dependsOn: 'connectedDebugAndroidTest') {
+task jacocoTestReport(type:JacocoReport, dependsOn: [':material-activity-chooser:clean', 'clean', ':material-activity-chooser:testDebugUnitTest', 'connectedDebugAndroidTest']) {
 
     group = 'Reporting'
 
@@ -47,8 +47,10 @@ task jacocoTestReport(type:JacocoReport, dependsOn: 'connectedDebugAndroidTest')
     sourceDirectories = files([mainSrc, libSrc])
     classDirectories = files([debugTree, libraryDebugTree])
 
-    executionData = fileTree(dir: project.projectDir, includes:
-            ['**/*.exec', '**/*.ec'])
+    def androidTestExecutionData = fileTree(dir: project.projectDir, includes: ['**/*.exec', '**/*.ec'])
+    def unitTestExecutionData = fileTree(dir: project.parent.childProjects['material-activity-chooser'].projectDir, includes: ['**/*.exec', '**/*.ec'])
+
+    executionData = files ([androidTestExecutionData, unitTestExecutionData])
 
     reports {
         xml.enabled = false

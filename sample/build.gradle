@@ -30,6 +30,7 @@ android {
         //add all permissions on install so that there's WRITE_STORAGE permission needed for storing Cucumber reports
         installOptions "-g", "-r"
     }
+
 }
 
 dependencies {

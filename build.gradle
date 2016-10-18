@@ -29,6 +29,10 @@ configure(allprojects) {
         androidSupportLibraryVersion        = "24.2.1"
         butterknifeVersion                  = "8.4.0"
 
+        junitVersion                        = "4.12"
+        mockitoVersion                      = "1.10.19"
+        robolectricVersion                  = "3.1.2"
+
         runnerVersion                       = "0.6-alpha"
         rulesVersion                        = "0.6-alpha"
         espressoVersion                     = "2.3-alpha"
