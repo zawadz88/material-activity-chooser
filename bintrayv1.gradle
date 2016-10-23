@@ -2,33 +2,6 @@ apply plugin: 'com.jfrog.bintray'
 
 version = libraryVersion
 
-if (project.hasProperty("android")) { // Android libraries
-    task sourcesJar(type: Jar) {
-        classifier = 'sources'
-        from android.sourceSets.main.java.srcDirs
-    }
-
-    task javadoc(type: Javadoc) {
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-} else { // Java libraries
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
-        from sourceSets.main.allSource
-    }
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
 // Bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -38,6 +11,9 @@ bintray {
     key = properties.getProperty("bintray.apikey")
 
     configurations = ['archives']
+
+    dryRun = false //[Default: false] Whether to run this as dry-run, without deploying
+
     pkg {
         repo = bintrayRepo
         name = bintrayName
@@ -49,11 +25,22 @@ bintray {
         publicDownloadNumbers = true
         version {
             desc = libraryDescription
-/*            gpg {
-                sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = properties.getProperty("bintray.gpg.password")
-                //Optional. The passphrase for GPG signing'
-            }*/
+            released  = new Date()
         }
     }
 }
+
+/**
+ * Delete default debug and release AARs and use the renamed one.
+ */
+task prepareForUpload(type: Delete) {
+    delete fileTree(dir: "${project.buildDir}/outputs/aar", exclude: "material-activity-chooser-${libraryVersion}.aar")
+
+    doLast {
+        artifacts {
+            archives file("${project.buildDir}/outputs/aar/material-activity-chooser-${libraryVersion}.aar")
+        }
+    }
+}
+
+tasks['bintrayUpload'].dependsOn prepareForUpload

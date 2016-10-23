@@ -40,3 +40,40 @@ install {
         }
     }
 }
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task renameReleaseAar(type: Copy) {
+    from "${project.buildDir}/outputs/aar"
+    into "${project.buildDir}/outputs/aar"
+    rename { String fileName ->
+        fileName.replace('material-activity-chooser-release.aar', "material-activity-chooser-${libraryVersion}.aar")
+    }
+}
+
+tasks['install'].dependsOn renameReleaseAar
