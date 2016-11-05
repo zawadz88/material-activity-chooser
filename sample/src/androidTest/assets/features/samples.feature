@@ -67,15 +67,20 @@ Feature: Samples app
     When I long-tap on an activity item
     Then I should see the clicked activity's settings
 
-  @sample-scenario-11 @facebook-app-installed @gmail-app-installed
+  @sample-scenario-11
   Scenario Template: Using alternative intents for selected apps
     Given I see an activity chooser with 'Share text with secondary intents' items
     When I tap on '<appName>' activity item
     Then I should see the clicked activity with package name: '<packageName>', extra title: '<extraTitle>' and extra text '<extraText>'
 
+  @gmail-app-installed
     Examples:
       | appName | packageName           | extraTitle              | extraText                                     |
       | Gmail   | com.google.android.gm | Secondary text to share | Secondary shared link: http://www.google.com  |
+
+  @facebook-app-installed
+    Examples:
+      | appName | packageName           | extraTitle              | extraText                                     |
       | Facebook| com.facebook.katana   | Tertiary text to share  | Tertiary shared link: http://www.facebook.com |
 
   @sample-scenario-12 @pdf-reader-apps-installed

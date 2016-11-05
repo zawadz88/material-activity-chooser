@@ -28,7 +28,7 @@ android {
 
     adbOptions {
         //add all permissions on install so that there's WRITE_STORAGE permission needed for storing Cucumber reports
-        installOptions "-g", "-r"
+        installOptions getInstallOptionsFromProperties()
     }
 
 }
@@ -83,4 +83,8 @@ dependencies {
  */
 def getCucumberTags() {
     project.hasProperty("tags") ? project.getProperties().get("tags") : ""
+}
+
+private String[] getInstallOptionsFromProperties() {
+    (project.hasProperty("install_options") ? project.getProperties().get("install_options").split(',') : ['-g', '-r']) as String []
 }
