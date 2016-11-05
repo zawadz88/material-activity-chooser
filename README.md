@@ -11,6 +11,9 @@ This library tries to mimic the activity chooser version you can see on Android 
 compile 'com.github.zawadz88:material-activity-chooser:0.2.1'
 ```
 
+## Sample app
+<a href='https://play.google.com/store/apps/details?id=com.github.zawadz88.sample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width='240px'/></a>
+
 ## Supported features
   - showing the activity chooser as a bottom sheet dialog on all OS versions starting from Jelly Bean (API 16)+
   - a smooth animation when the items appear in the bottom sheet

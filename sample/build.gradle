@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply from: '../sample/code_coverage.gradle'
 
+Properties localProperties = new Properties()
+localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     compileSdkVersion project.androidCompileSdkVersion
     buildToolsVersion("$androidBuildToolsVersion")
@@ -15,10 +18,19 @@ android {
         testInstrumentationRunner "com.github.zawadz88.sample.test.CucumberAndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("$projectDir/sample.jks")
+            storePassword "${localProperties.getProperty('STORE_PASSWORD')}"
+            keyPassword "${localProperties.getProperty('KEY_PASSWORD')}"
+            keyAlias "${localProperties.getProperty('KEY_ALIAS')}"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             testCoverageEnabled true
