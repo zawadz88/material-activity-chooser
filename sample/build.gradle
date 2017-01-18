@@ -9,6 +9,11 @@ android {
     compileSdkVersion project.androidCompileSdkVersion
     buildToolsVersion("$androidBuildToolsVersion")
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
     defaultConfig {
         applicationId "com.github.zawadz88.sample"
         minSdkVersion project.androidMinSdkVersion
@@ -39,8 +44,8 @@ android {
     }
 
     adbOptions {
-        //add all permissions on install so that there's WRITE_STORAGE permission needed for storing Cucumber reports
-        installOptions getInstallOptionsFromProperties()
+        timeOutInMs 10 * 60 * 1000 // Set the timeout to 10 minutes (http://stackoverflow.com/questions/37956789/cant-configure-travis-to-work-on-android-project)
+        installOptions getInstallOptionsFromProperties() // Add all permissions on install so that there's WRITE_STORAGE permission needed for storing Cucumber reports
     }
 
 }
@@ -94,7 +99,7 @@ dependencies {
  * See: cucumber.runtime.android.Arguments#getCucumberOptionsString(bundle)
  */
 def getCucumberTags() {
-    project.hasProperty("tags") ? project.getProperties().get("tags") : ""
+    project.hasProperty("tags") ? project.getProperties().get("tags") : ''
 }
 
 private String[] getInstallOptionsFromProperties() {
