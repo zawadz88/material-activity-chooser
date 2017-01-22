@@ -35,10 +35,14 @@ before_script:
   - printf 'bintray.user=${BINTRAY_USER}\nbintray.apikey=${BINTRAY_API_KEY}' > local.properties
   # Create SD card (needed for Cucumber)
   - mksdcard -l ${SDCARD_NAME} "200M" ${SDCARD_NAME}
-  # Create emulator
+  # Create & wait for emulator
   - echo no | android create avd -f -n emulator-v${EMULATOR_API_LEVEL} -t android-${EMULATOR_API_LEVEL} --abi ${ANDROID_ABI} --sdcard ${SDCARD_NAME}
   - emulator -avd emulator-v${EMULATOR_API_LEVEL} -no-audio -no-window &
   - android-wait-for-emulator
-script:
   - android list target
-  - ./gradlew jacocoTestReport --info -Pinstall_options=-r,-t
+  # Install APKs needed for UI tests
+  - adb install test-apks/AndroidPdfViewer_1_0_1.apk
+  - adb install test-apks/FakeFacebook.apk
+  - adb install test-apks/FakeGmail.apk
+script:
+  - ./gradlew jacocoTestReport --info -Pinstall_options=-r,-t -PTEST_COVERAGE_ENABLED=true

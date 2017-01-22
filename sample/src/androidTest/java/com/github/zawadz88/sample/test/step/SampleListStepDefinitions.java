@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.idling.CountingIdlingResource;
+import android.support.test.espresso.contrib.CountingIdlingResource;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.runner.intercepting.SingleActivityFactory;
@@ -46,7 +46,6 @@ import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.intending;
 import static android.support.test.espresso.intent.matcher.ComponentNameMatchers.hasPackageName;
@@ -59,6 +58,7 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasTyp
 import static android.support.test.espresso.intent.matcher.IntentMatchers.isInternal;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -204,9 +204,16 @@ public class SampleListStepDefinitions {
     @When("^I tap on '(.+)' activity item$")
     public void i_tap_on_a_selected_activity_item(String appName) {
         mIdlingResourceBottomSheetCallback.setSwipeActionInProgress(true);
-        // TODO: 09/10/2016 this is a naive implementation, if there are many items then this test could fail
+        // This is a naive implementation, if there are many items then this test could fail
         onView(withId(R.id.mac_bottom_sheet)).perform(swipeBottomSheetUp());
-        onView(withId(R.id.mac_recycler_view)).perform(actionOnItem(withChild(withText(appName)), click()));
+
+        // RecyclerViewActions#actionOnItem(withChild(withText(appName)) does not work on emulators, hence the following...
+        onView(allOf(
+                withText(appName),
+                withId(R.id.mac_item_activity_label),
+                isDescendantOfA(withId(R.id.mac_recycler_view))
+                )
+        ).perform(click());
     }
 
     @When("^I tap the empty view action button$")
