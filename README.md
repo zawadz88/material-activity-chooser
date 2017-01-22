@@ -1,4 +1,4 @@
-# Android Material Activity Chooser
+# Android Material Activity Chooser [![Build Status](https://travis-ci.org/zawadz88/material-activity-chooser.svg?branch=master)](https://travis-ci.org/zawadz88/material-activity-chooser)
 
 This library allows to use Material activity choosers from Jelly Bean+ to e.g. share a text or a link using a nice Material dialog.
 Material activity choosers are displayed as bottom sheet dialogs.
