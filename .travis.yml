@@ -44,5 +44,9 @@ before_script:
   - adb install test-apks/AndroidPdfViewer_1_0_1.apk
   - adb install test-apks/FakeFacebook.apk
   - adb install test-apks/FakeGmail.apk
+
 script:
   - ./gradlew jacocoTestReport --info -Pinstall_options=-r,-t -PTEST_COVERAGE_ENABLED=true
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

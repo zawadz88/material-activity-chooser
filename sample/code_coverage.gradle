@@ -53,7 +53,7 @@ task jacocoTestReport(type:JacocoReport, dependsOn: [':material-activity-chooser
     executionData = files ([androidTestExecutionData, unitTestExecutionData])
 
     reports {
-        xml.enabled = false
+        xml.enabled = true
         csv.enabled = false
         html.enabled = true
         html.destination = "${buildDir}/reports/jacoco"
