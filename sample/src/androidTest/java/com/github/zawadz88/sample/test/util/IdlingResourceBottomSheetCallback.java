@@ -3,7 +3,7 @@ package com.github.zawadz88.sample.test.util;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.idling.CountingIdlingResource;
+import android.support.test.espresso.contrib.CountingIdlingResource;
 import android.view.View;
 
 /**

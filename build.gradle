@@ -35,14 +35,24 @@ configure(allprojects) {
 
         runnerVersion                       = "0.6-alpha"
         rulesVersion                        = "0.6-alpha"
-        espressoVersion                     = "2.3-alpha"
+        espressoVersion                     = "2.2"
         cucumberVersion                     = "1.2.2"
         superReflectVersion                 = "1.0.1"
         awaitilityVersion                   = "1.7.0"
+
     }
 
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+/**
+ * Value to be used for {@code android.buildTypes.debug.testCoverageEnabled}.
+ * Setting this to {@code true} breaks the debugger i.e. you cannot see the variables
+ * @return true if test coverage should be enabled, false otherwise
+ */
+public boolean getTestCoverageEnabledFromProperties() {
+    (project.hasProperty("TEST_COVERAGE_ENABLED") ? project.getProperties().get("TEST_COVERAGE_ENABLED") : false) as boolean
 }
