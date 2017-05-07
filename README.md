@@ -1,4 +1,4 @@
-# Android Material Activity Chooser [![Build Status](https://travis-ci.org/zawadz88/material-activity-chooser.svg?branch=master)](https://travis-ci.org/zawadz88/material-activity-chooser) [![codecov.io](https://codecov.io/github/zawadz88/material-activity-chooser/branch/master/graph/badge.svg)](https://codecov.io/github/zawadz88/material-activity-chooser) [![Current version](https://img.shields.io/bintray/v/zawadz88/maven/material-activity-chooser.svg)](https://bintray.com/zawadz88/maven/material-activity-chooser)
+# Android Material Activity Chooser [![Build Status](https://travis-ci.org/zawadz88/material-activity-chooser.svg?branch=master)](https://travis-ci.org/zawadz88/material-activity-chooser) [![codecov.io](https://codecov.io/github/zawadz88/material-activity-chooser/branch/master/graph/badge.svg)](https://codecov.io/github/zawadz88/material-activity-chooser)
 
 This library allows to use Material activity choosers from Jelly Bean+ to e.g. share a text or a link using a nice Material dialog.
 Material activity choosers are displayed as bottom sheet dialogs.
@@ -8,7 +8,7 @@ This library tries to mimic the activity chooser version you can see on Android 
 
 ## Download (from JCenter)
 ```groovy
-compile 'com.github.zawadz88:material-activity-chooser:0.2.1'
+compile 'com.github.zawadz88:material-activity-chooser:0.2.2'
 ```
 
 ## Sample app
