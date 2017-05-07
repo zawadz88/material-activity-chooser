@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
@@ -26,7 +26,7 @@ configure(allprojects) {
         androidTargetSdkVersion             = 25
         androidCompileSdkVersion            = 25
         androidBuildToolsVersion            = "25.0.2"
-        androidSupportLibraryVersion        = "25.1.0"
+        androidSupportLibraryVersion        = "25.3.1"
         butterknifeVersion                  = "8.4.0"
 
         junitVersion                        = "4.12"

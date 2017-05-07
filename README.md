@@ -27,17 +27,23 @@ compile 'com.github.zawadz88:material-activity-chooser:0.2.1'
   - going to the chosen activity settings on long-click
   
 ## Screenshots
-  - Showcase<br/>
+
+### Showcase
 <img src ="./screenshots/showcase.gif" width="360" height="640"/>
-  - Sharing with MaterialActivityChooser<br/>
+
+### Sharing with MaterialActivityChooser
 <img src ="./screenshots/share.png" width="360" height="640"/>
-  - Sharing with the system IntentChooser on Nougat for comparison<br/>
+
+### Sharing with the system IntentChooser on Nougat for comparison
 <img src ="./screenshots/stock_share_on_nougat.png" width="360" height="640"/>
-  - Sharing with MaterialActivityChooser with custom style<br/>
+  
+### Sharing with MaterialActivityChooser with custom style
 <img src ="./screenshots/styled_share.png" width="360" height="640"/>
-  - Sharing with MaterialActivityChooser when no activities found<br/>
+
+### Sharing with MaterialActivityChooser when no activities found
 <img src ="./screenshots/empty_view.png" width="360" height="640"/>
-  - Sharing with MaterialActivityChooser when no activities found with a custom view<br/>
+
+### Sharing with MaterialActivityChooser when no activities found with a custom view
 <img src ="./screenshots/empty_view_custom.png" width="360" height="640"/>
   
 ## Getting started
